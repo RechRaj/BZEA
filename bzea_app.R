@@ -135,9 +135,6 @@ ui <- fluidPage(
             title = "Filters",
             status = "warning",
             solidHeader = TRUE,
-            # selectInput("Species", "Species:", choices = NULL),
-            # selectInput("subspecies", "subspecies:", choices = NULL),
-            # selectInput("race", "race:", choices = NULL)
             
             selectInput("Species", "Species:", choices = c("", unique(main2$Species))),
             selectInput("subspecies", "subspecies:", choices = c("", unique(main2$subspecies))),
@@ -210,27 +207,7 @@ server <- function(input, output, session) {
                        popup = paste("<b>Species: </b>", main$Species, "<br/>",
                                      "<b>Race: </b>", main$Race, "<br/>"))
   })
-  
-  # output$popmap <- renderLeaflet({
-  #   pal <- colorFactor(palette = "Set3",
-  #                      domain = main$Population)
-  #   
-  #   leaflet(data = main) %>%
-  #     addTiles() %>%
-  #     addCircleMarkers(lng = ~Longitude,
-  #                      lat = ~Latitude,
-  #                      radius = 5,
-  #                      group = "marker",
-  #                      color = "#000000",
-  #                      weight = 1,
-  #                      opacity = 1,
-  #                      fillColor = ~pal(Population),
-  #                      fillOpacity = 1,
-  #                      popup = paste("<b>Species: </b>", main$Species, "<br/>",
-  #                                    "<b>Race: </b>", main$Race, "<br/>",
-  #                                    "<b>Population: </b>", main$Population))
-  # })
-  # 
+ 
   output$speciesmap <- renderLeaflet({
     pal <- colorFactor(palette = "Set3",
                        domain = main$Species)
@@ -294,7 +271,7 @@ server <- function(input, output, session) {
     theme_classic()
   })
   
-  # pie chart stuff
+  # pie chart
   main %>%
     select(Race) %>%
     group_by(Race) %>%
