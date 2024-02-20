@@ -1,0 +1,12 @@
+name: rsrrjs
+title:
+username: gemmalab
+account: gemmalab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10631348
+bundleId: 7986735
+url: https://gemmalab.shinyapps.io/rsrrjs/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
