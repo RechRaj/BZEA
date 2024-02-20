@@ -1,20 +1,3 @@
-# LIST OF THINGS FOR FUTURE REFERENCE
-# shinyapps.io setup: https://www.shinyapps.io/admin/#/dashboard
-# this application uses R 4.2.2 
-
-# 
-# if(!require(shiny)) install.packages("shiny", repos = "http://cran.us.r-project.org")
-
-# install.packages('htmltools')
-# install.packages('shiny')
-# install.packages('shiny.router')
-# install.packages('leaflet')
-# install.packages('dplyr')
-# install.packages('DT')
-# install.packages('shinydashboard')
-# install.packages('ggplot2')
-
-
 library(shiny)
 library(shiny.router)
 library(leaflet)
@@ -26,8 +9,6 @@ library(htmltools)
 
 main <- read.csv(file = "BZEA.csv")
 main2 <- read.csv(file = "All.csv")
-
-
 
 ui <- fluidPage(
   # tags$head(
@@ -109,12 +90,6 @@ ui <- fluidPage(
           solidHeader = TRUE,
           leafletOutput("racemap")
         ),
-        # box(
-        #   title = "Population Map",
-        #   status = "warning",
-        #   solidHeader = TRUE,
-        #   leafletOutput("popmap")
-        # ),
         box(
           title = "Species Map",
           status = "warning",
