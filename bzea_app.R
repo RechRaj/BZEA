@@ -371,10 +371,7 @@ server <- function(input, output, session) {
   )
   
   observeEvent(input$submit, {
-    # Handle the contact form submission here
-    # You can access the input values using input$name, input$email, input$message
-    # You can send emails, save to a database, or perform any other action based on your requirements
-    # For example:
+    
     name <- input$name
     email <- input$email
     message <- input$message
@@ -397,9 +394,9 @@ server <- function(input, output, session) {
     cat("Message:", message, "\n")
   })
   
-  # Display additional details box
+  # Display 
   output$additionalDetails <- renderPrint({
-    # Replace with the details you want to display
+    
     cat("Rubén Rellán Álvarez   Email: rrellan@ncsu.edu     Phone: 919.515.4738\n")
     cat("\n")
     # Add more details as needed
