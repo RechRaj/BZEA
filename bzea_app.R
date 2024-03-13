@@ -25,7 +25,8 @@ ui <- fluidPage(
       menuItem("Map Insights", tabName = 'maps', icon = icon("map")),
       menuItem("Altitude Dumbbell", tabName = 'dumbbell', icon = icon("chart-bar")),
       menuItem("Pie Charts", tabName = 'pie', icon = icon("chart-pie")),
-      menuItem("Data with Filters", tabName = "filter", icon = icon("filter"))
+      menuItem("Data with Filters", tabName = "filter", icon = icon("filter")),
+      menuItem("Contact", tabName = 'contact', icon = icon("envelope"))
     ),
     img(src = "zea.png", height = 200, width = 200)
   ),
@@ -54,6 +55,9 @@ ui <- fluidPage(
       }
       .box-body{
         color: black
+      }
+      .box.box-solid.box-info>.box-header{
+        background-color: #6B4AA3
       }"
     )),
     tabItems(
@@ -150,6 +154,33 @@ ui <- fluidPage(
           solidHeader = TRUE,
           DTOutput('filteredTableDT', width = 'auto', fill = FALSE)
         )
+      )
+    ),
+    tabItem(
+      tabName = 'contact',
+      fluidRow(
+        box(
+          title = "Contact Us",
+          status = "warning",
+          solidHeader = TRUE,
+          textInput("name", "Name"),
+          textInput("email", "Email"),
+          textAreaInput("message", "Message"),
+          actionButton("submit", "Submit")
+        ),
+        # Align the box to the center
+        width = 6  # Adjust the width as needed
+      ),
+      fluidRow(
+        box(
+          title = "Reach out to us!",
+          status = "info",
+          solidHeader = TRUE,
+          verbatimTextOutput("additionalDetails")
+        ),
+        # Align the box to the center
+        color = 'purple',
+        width = 6  # Adjust the width as needed
       )
     )
       
@@ -338,6 +369,41 @@ server <- function(input, output, session) {
     filteredData(),
     options = list(pageLength = 15, scrollX = TRUE, scrollY = "800px")
   )
+  
+  observeEvent(input$submit, {
+    # Handle the contact form submission here
+    # You can access the input values using input$name, input$email, input$message
+    # You can send emails, save to a database, or perform any other action based on your requirements
+    # For example:
+    name <- input$name
+    email <- input$email
+    message <- input$message
+    print(paste("Name:", name))
+    print(paste("Email:", email))
+    print(paste("Message:", message))
+    
+    from_email <- email
+    send_mail(
+      from = from_email,
+      to = "rrajash@ncsu.edu",
+      subject = paste("New Contact Form Submission from", name),
+      body = paste("Name: ", name, "\nEmail: ", email, "\nMessage: ", message)
+    )
+    
+    # Print the form data to the console
+    cat("Contact Form Submission:\n")
+    cat("Name:", name, "\n")
+    cat("Email:", email, "\n")
+    cat("Message:", message, "\n")
+  })
+  
+  # Display additional details box
+  output$additionalDetails <- renderPrint({
+    # Replace with the details you want to display
+    cat("Rubén Rellán Álvarez   Email: rrellan@ncsu.edu     Phone: 919.515.4738\n")
+    cat("\n")
+    # Add more details as needed
+  })
 
   # router$server(input, output, session)
 }
